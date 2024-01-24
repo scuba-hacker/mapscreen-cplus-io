@@ -1,3 +1,4 @@
+#include <Arduino.h>
 
 #include <M5StickCPlus.h>
 #include <MapScreen_M5.h>
