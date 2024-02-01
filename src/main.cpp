@@ -45,7 +45,7 @@ void setup()
 
   M5.begin();  
   M5.Lcd.setRotation(0);
-  mapScreen.reset(new MapScreen_M5(&M5.Lcd,&M5));
+  mapScreen.reset(new MapScreen_M5(M5.Lcd,M5));
 
   mapScreen->setDrawAllFeatures(true);
 
