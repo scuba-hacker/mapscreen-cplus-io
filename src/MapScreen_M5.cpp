@@ -2,15 +2,19 @@
 
 #include <M5StickCPlus.h>
 
-#include "LilyWraysbury.h"
+extern const uint16_t w1_1[];
+extern const uint16_t w1_2[];
+extern const uint16_t w1_3[];
+extern const uint16_t w1_4[];
+extern const uint16_t wraysbury_x1[];
 
 const geo_map MapScreen_M5::s_maps[] =
 {
-  [0] = { .mapData = &w1_1, .label="North", .backColour=TFT_BLACK, .backText="", .surveyMap=false, .swapBytes=false, .mapLongitudeLeft = -0.55, .mapLongitudeRight = -0.548, .mapLatitudeBottom = 51.4604},
-  [1] = { .mapData = &w1_2, .label="Cafe", .backColour=TFT_BLACK, .backText="", .surveyMap=false, .swapBytes=false, .mapLongitudeLeft = -0.5495, .mapLongitudeRight = -0.5475, .mapLatitudeBottom = 51.4593},
-  [2] = { .mapData = &w1_3, .label="Mid", .backColour=TFT_BLACK, .backText="", .surveyMap=false, .swapBytes=false, .mapLongitudeLeft = -0.5478, .mapLongitudeRight = -0.5458, .mapLatitudeBottom = 51.4588},
-  [3] = { .mapData = &w1_4, .label="South", .backColour=TFT_BLACK, .backText="", .surveyMap=false, .swapBytes=false, .mapLongitudeLeft = -0.5471, .mapLongitudeRight = -0.5451, .mapLatitudeBottom = 51.4583},
-  [4] = { .mapData = &wraysbury_x1, .label="All", .backColour=TFT_BLACK, .backText="", .surveyMap=false, .swapBytes=false, .mapLongitudeLeft = -0.5499, .mapLongitudeRight = -0.5452, .mapLatitudeBottom = 51.457350},
+  [0] = { .mapData = w1_1, .label="North", .backColour=TFT_BLACK, .backText="", .surveyMap=false, .swapBytes=false, .mapLongitudeLeft = -0.55, .mapLongitudeRight = -0.548, .mapLatitudeBottom = 51.4604},
+  [1] = { .mapData = w1_2, .label="Cafe", .backColour=TFT_BLACK, .backText="", .surveyMap=false, .swapBytes=false, .mapLongitudeLeft = -0.5495, .mapLongitudeRight = -0.5475, .mapLatitudeBottom = 51.4593},
+  [2] = { .mapData = w1_3, .label="Mid", .backColour=TFT_BLACK, .backText="", .surveyMap=false, .swapBytes=false, .mapLongitudeLeft = -0.5478, .mapLongitudeRight = -0.5458, .mapLatitudeBottom = 51.4588},
+  [3] = { .mapData = w1_4, .label="South", .backColour=TFT_BLACK, .backText="", .surveyMap=false, .swapBytes=false, .mapLongitudeLeft = -0.5471, .mapLongitudeRight = -0.5451, .mapLatitudeBottom = 51.4583},
+  [4] = { .mapData = wraysbury_x1, .label="All", .backColour=TFT_BLACK, .backText="", .surveyMap=false, .swapBytes=false, .mapLongitudeLeft = -0.5499, .mapLongitudeRight = -0.5452, .mapLatitudeBottom = 51.457350},
   [5] = { .mapData = nullptr, .label="Canoe", .backColour=TFT_CYAN, .backText="Canoe",.surveyMap=true, .swapBytes=false, .mapLongitudeLeft = -0.54910, .mapLongitudeRight = -0.54880, .mapLatitudeBottom = 51.46190}, // Canoe area
   [6] = { .mapData = nullptr, .label="Sub",  .backColour=TFT_CYAN, .backText="Sub",.surveyMap=true, .swapBytes=false, .mapLongitudeLeft = -0.54931, .mapLongitudeRight = -0.54900, .mapLatitudeBottom = 51.4608}, // Sub area
 };
@@ -69,10 +73,10 @@ void MapScreen_M5::writeMapTitleToSprite(TFT_eSprite& sprite, const geo_map& map
 {
     if (map.backText)
     {
-      _m5.Lcd.setCursor(5,5);
-      _m5.Lcd.setTextSize(3);
-      _m5.Lcd.setTextColor(TFT_BLACK, map.backColour);
-      _m5.Lcd.println(map.backText);
+      sprite.setCursor(5,5);
+      sprite.setTextSize(3);
+      sprite.setTextColor(TFT_BLACK, map.backColour);
+      sprite.println(map.backText);
     }
 }
 

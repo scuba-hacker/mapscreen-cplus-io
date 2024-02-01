@@ -11,11 +11,8 @@ class navigationWaypoint;
 
 class geo_map
 {
-//  static const int mapSize = 600*450;    // needed for T4
-  static const int mapSize = 135*240;    // needed for M5
-
   public:
-    std::shared_ptr<const std::array<uint16_t,mapSize>> mapData;   // MBJ REFACTOR - HOW TO GET RID OF mapSize HERE? c.f. C array x[]
+    const uint16_t* mapData;
     const char* label;
     const uint16_t backColour;
     const char* backText;
@@ -25,12 +22,8 @@ class geo_map
     const float mapLongitudeRight;
     const float mapLatitudeBottom;
   
-    // needs to be 135*240 for M5
-    geo_map(const std::array<uint16_t,135*240>  *md, const char* l, uint16_t bc,const char* bt, bool sm, bool sb, float ll, float lr, float lb) : mapData(md),label(l),backColour(bc),backText(bt),surveyMap(sm),swapBytes(sb),mapLongitudeLeft(ll),mapLongitudeRight(lr),mapLatitudeBottom(lb)
+    geo_map(const uint16_t * md, const char* l, uint16_t bc,const char* bt, bool sm, bool sb, float ll, float lr, float lb) : mapData(md),label(l),backColour(bc),backText(bt),surveyMap(sm),swapBytes(sb),mapLongitudeLeft(ll),mapLongitudeRight(lr),mapLatitudeBottom(lb)
     {}
-//    // needs to be 600*450 for T4
-  //  geo_map(const std::array<uint16_t,600*450>  *md, const char* l, uint16_t bc,const char* bt, bool sm, bool sb, float ll, float lr, float lb) : mapData(md),label(l),backColour(bc),backText(bt),surveyMap(sm),swapBytes(sb),mapLongitudeLeft(ll),mapLongitudeRight(lr),mapLatitudeBottom(lb)
-//    {}
 };
 
 /* Requirements:
@@ -206,9 +199,9 @@ class MapScreen_ex
 
     bool _useDiverHeading;
     
-    const geo_map* _maps;       // MBJ REFACTOR once s_maps refactored to std::array in MapScreen_T4.g then this pointer goes
+    const geo_map* _maps;
 
-    const geo_map* _currentMap;  // MBJ REFACTOR  and then get rid of this pointer
+    const geo_map* _currentMap;
 
     bool _showAllLake;
 
